@@ -19,5 +19,15 @@ function array2Linked(arr) {
   return head;
 }
 
+function linked2Array(head) {
+  const result = [];
+  while (head) {
+    result.push(head.val);
+    head = head.next;
+  }
+  return result;
+}
+
 module.exports = ListNode;
 module.exports.array2Linked = array2Linked;
+module.exports.linked2Array = linked2Array;
