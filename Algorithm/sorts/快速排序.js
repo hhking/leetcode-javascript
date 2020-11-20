@@ -8,7 +8,13 @@ function swap(arr, i, j) {
   arr[j] = temp;
 }
 
+function randBetween(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function partition(arr, l, r) {
+  var pivotIndex = randBetween(l, r);
+  swap(arr, pivotIndex, r);
   var pivot = arr[r];
   var cur = l;
   for(var i = l; i < r; i++) {
@@ -30,7 +36,7 @@ function quickSort(arr, l, r) {
 
 var testArr = [];
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 1000000; i++) {
   testArr.push(Math.floor(Math.random() * 1000));
 }
 
