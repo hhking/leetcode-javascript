@@ -8,6 +8,8 @@
  * K > p + 1，那就从 [p+1, n-1] 中找，递归分区
  * 
  * 时间复杂度：O(n)
+ * 
+ * 优化：pivot 可以改成随机，尽量避免退化成 O(n2)
  */
 
 function swap(arr, i, j) {
@@ -33,11 +35,15 @@ function kthNum(arr, k) {
   var len = arr.length;
   if (len < k) return null;
   var p = partition(arr, 0, len - 1);
+  var left = 0;
+  var right = len - 1;
   while (p + 1 !== k) {
     if (p + 1 > k) {
-      p = partition(arr, 0, p - 1);
+      right = p - 1;
+      p = partition(arr, left, p - 1);
     } else {
-      p = partition(arr, p + 1, len - 1);
+      left = p + 1;
+      p = partition(arr, p + 1, right);
     }
   }
   return arr[p];
